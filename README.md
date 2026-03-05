@@ -78,6 +78,44 @@ python app.py
 - Apply: `http://127.0.0.1:5000/apply`
 - Admin Login: `http://127.0.0.1:5000/admin/login`
 
+## HOW TO USE THIS IN VS CODE
+
+1. Open VS Code.
+2. Go to **File > Open Folder...** and select the `aDMISSION` project folder.
+3. Open the terminal in VS Code (**Terminal > New Terminal**).
+4. Create and activate virtual environment:
+
+### Linux / macOS
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### Windows (PowerShell)
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+5. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+6. Start server:
+
+```bash
+python app.py
+```
+
+7. In VS Code terminal, Ctrl+Click this URL: `http://127.0.0.1:5000/`.
+
+### VS Code Extensions (recommended)
+- Python (ms-python.python)
+- Pylance (ms-python.vscode-pylance)
+- SQLite Viewer (optional for inspecting `admission.db`)
+
 ## Admin Credentials (default)
 
 - Username: `admin`
@@ -89,3 +127,8 @@ python app.py
 
 SQLite database (`admission.db`) initializes automatically on first run.
 Schema reference: `docs/schema.sql`.
+
+## Troubleshooting
+
+- If `ModuleNotFoundError: No module named 'flask'` appears, ensure the virtual environment is activated and run `pip install -r requirements.txt` again.
+- If dependency install fails in restricted networks, configure `pip` proxy/index settings per your environment policy.
