@@ -132,3 +132,23 @@ Schema reference: `docs/schema.sql`.
 
 - If `ModuleNotFoundError: No module named 'flask'` appears, ensure the virtual environment is activated and run `pip install -r requirements.txt` again.
 - If dependency install fails in restricted networks, configure `pip` proxy/index settings per your environment policy.
+
+
+## Deploy on Render
+
+If Render auto-detected this repository as Rust and shows:
+
+- Build Command: `cargo build --release`
+
+change it to Python settings:
+
+- **Environment**: `Python 3`
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
+
+This repository now includes both:
+
+- `render.yaml` (Blueprint config)
+- `Procfile` (process declaration)
+
+So Render can deploy without `cargo`.
