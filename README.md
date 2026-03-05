@@ -136,19 +136,31 @@ Schema reference: `docs/schema.sql`.
 
 ## Deploy on Render
 
-If Render auto-detected this repository as Rust and shows:
+If your Render logs show:
 
-- Build Command: `cargo build --release`
+- `error: could not find Cargo.toml in /opt/render/project/src`
 
-change it to Python settings:
+it means the service is currently configured as Rust (`cargo build --release`).
+
+Use these exact settings for this Python Flask app:
 
 - **Environment**: `Python 3`
-- **Build Command**: `pip install -r requirements.txt`
+- **Build Command**: `bash ./scripts/render-build.sh`
 - **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
 
-This repository now includes both:
+### Important for existing Render services
 
-- `render.yaml` (Blueprint config)
+If the service was created earlier with Rust defaults, updating files alone is not enough. In Render dashboard:
+
+1. Open your Web Service **Settings**.
+2. Replace Build/Start commands with the values above.
+3. Click **Save Changes**.
+4. Run **Manual Deploy -> Clear build cache & deploy**.
+
+### Files included for Render
+
+- `render.yaml` (Blueprint config for new services)
 - `Procfile` (process declaration)
+- `scripts/render-build.sh` (deterministic Python dependency install)
 
-So Render can deploy without `cargo`.
+After these changes, Render will stop trying to run `cargo`.

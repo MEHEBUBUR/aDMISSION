@@ -3,6 +3,6 @@ services:
     name: kv-barpeta-admission-portal
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: bash ./scripts/render-build.sh
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     autoDeploy: true
