@@ -1,0 +1,27 @@
+:root {
+  --kvs-maroon: #7b1e3a;
+}
+
+body {
+  background-color: #f8f9fb;
+}
+
+.kvs-maroon {
+  background-color: var(--kvs-maroon) !important;
+}
+
+.kvs-btn {
+  background-color: var(--kvs-maroon);
+  color: #fff;
+  border: none;
+}
+
+.kvs-btn:hover {
+  background-color: #64152f;
+  color: #fff;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Home | KV Barpeta Admission{% endblock %}
+{% block content %}
+<div class="card shadow-sm border-0">
+  <div class="card-body p-5 text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Kendriya_Vidyalaya_logo.svg/120px-Kendriya_Vidyalaya_logo.svg.png" alt="KVS Logo" class="logo mb-3">
+    <h1 class="display-6 fw-bold">PM SHRI Kendriya Vidyalaya Barpeta</h1>
+    <h4 class="mb-3">Class XI Admission Portal (Academic Session 2026–27)</h4>
+    <div class="alert alert-warning fs-5">
+      Admission Open for Class XI as per Kendriya Vidyalaya Sangathan (KVS) Guidelines.
+    </div>
+    <a href="{{ url_for('apply') }}" class="btn btn-lg kvs-btn">Apply for Class XI Admission</a>
+  </div>
+</div>
+{% endblock %}
