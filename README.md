@@ -164,3 +164,12 @@ If the service was created earlier with Rust defaults, updating files alone is n
 - `scripts/render-build.sh` (deterministic Python dependency install)
 
 After these changes, Render will stop trying to run `cargo`.
+
+
+### Cargo build fallback compatibility
+
+Some Render services are accidentally created with Rust defaults and run `cargo build --release`
+before app settings are corrected. To prevent immediate build failure (`could not find Cargo.toml`),
+this repo includes a minimal Rust shim (`Cargo.toml` + `src/main.rs`) so the build step can complete.
+
+> The real runtime remains Python Flask via: `gunicorn app:app --bind 0.0.0.0:$PORT`.
