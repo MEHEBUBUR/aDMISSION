@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: kv-barpeta-admission-portal
+    env: python
+    plan: free
+    rootDir: .
+    buildCommand: bash ./scripts/render-build.sh
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    autoDeploy: true

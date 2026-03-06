@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}KV Barpeta Admission{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header>
+  <div class="top-strip text-white py-1">
+    <div class="container d-flex justify-content-between small">
+      <span>PM SHRI Kendriya Vidyalaya Barpeta</span>
+      <span>Class XI Admission Portal | Session 2026–27</span>
+    </div>
+  </div>
+  <div class="brand-header bg-white border-bottom">
+    <div class="container py-3 d-flex align-items-center gap-3">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Kendriya_Vidyalaya_logo.svg/120px-Kendriya_Vidyalaya_logo.svg.png" alt="KVS Logo" class="logo">
+      <div>
+        <h1 class="h4 mb-1">PM SHRI Kendriya Vidyalaya Barpeta</h1>
+        <p class="text-muted mb-0">Kendriya Vidyalaya Sangathan | Class XI Online Admission</p>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark kvs-maroon shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">Admission 2026–27</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('apply') }}">Apply Online</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_login') }}">Admin Panel</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container py-4">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer text-center py-3 mt-4">
+  <small>&copy; {{ current_year }} PM SHRI Kendriya Vidyalaya Barpeta | Official Admission Portal</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

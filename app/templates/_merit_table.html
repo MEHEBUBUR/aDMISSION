@@ -1,0 +1,11 @@
+{% if rows is not defined %}{% set rows = selected %}{% endif %}
+<table class="table table-bordered table-sm">
+  <thead class="table-light"><tr><th>ID</th><th>Name</th><th>Stream</th><th>%</th><th>Maths</th><th>Science</th><th>Merit</th><th>Status</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+      <tr><td>{{ r.id }}</td><td>{{ r.full_name }}</td><td>{{ r.stream_selected }}</td><td>{{ r.percentage }}</td><td>{{ r.mathematics }}</td><td>{{ r.science }}</td><td>{{ r.merit_score }}</td><td>{{ r.shortlist_status }}</td></tr>
+    {% else %}
+      <tr><td colspan="8" class="text-center text-muted">No records found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>

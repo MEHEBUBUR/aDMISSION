@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+  <h3>Merit Lists</h3>
+  <div>
+    <a class="btn btn-sm btn-primary" href="{{ url_for('regenerate_merit') }}">Regenerate Merit</a>
+    <a class="btn btn-sm btn-secondary" href="{{ url_for('admin_dashboard') }}">Back</a>
+  </div>
+</div>
+
+<h5>Selected Students</h5>
+{% include '_merit_table.html' with context %}
+
+<h5 class="mt-4">Waiting List</h5>
+{% set rows = waiting %}
+{% include '_merit_table.html' %}
+
+<h5 class="mt-4">Rejected List</h5>
+{% set rows = rejected %}
+{% include '_merit_table.html' %}
+{% endblock %}

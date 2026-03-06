@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Interview List (Shortlisted)</h3>
+  <div>
+    <a class="btn btn-outline-primary btn-sm" href="{{ url_for('interview_list_pdf') }}">Download PDF</a>
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin_dashboard') }}">Back</a>
+  </div>
+</div>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark"><tr><th>Name</th><th>Stream</th><th>Merit Score</th><th>Interview Date</th><th>Interview Time</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+      <tr><td>{{ r.full_name }}</td><td>{{ r.stream_selected }}</td><td>{{ r.merit_score }}</td><td>{{ r.interview_date or '-' }}</td><td>{{ r.interview_time or '-' }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

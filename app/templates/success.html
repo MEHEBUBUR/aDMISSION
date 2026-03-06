@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-4">
+    <h3>Application Submitted Successfully</h3>
+    <p>Application ID: <strong>{{ student_id }}</strong></p>
+    {% if application %}
+    <ul>
+      <li>Name: {{ application.full_name }}</li>
+      <li>Stream: {{ application.stream_selected }}</li>
+      <li>Eligibility: {{ application.eligibility_status }}</li>
+      <li>Merit Score: {{ application.merit_score }}</li>
+      <li>Initial Status: {{ application.shortlist_status }}</li>
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('home') }}" class="btn kvs-btn">Go Home</a>
+  </div>
+</div>
+{% endblock %}

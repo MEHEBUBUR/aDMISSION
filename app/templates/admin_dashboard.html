@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Admin Dashboard</h3>
+  <div>
+    <a class="btn btn-outline-primary btn-sm" href="{{ url_for('merit_list') }}">Merit List</a>
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('interview_list') }}">Interview List</a>
+    <a class="btn btn-outline-success btn-sm" href="{{ url_for('export_csv') }}">Export CSV</a>
+    <a class="btn btn-outline-danger btn-sm" href="{{ url_for('admin_logout') }}">Logout</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th><th>Name</th><th>Stream</th><th>Percentage</th><th>Merit</th><th>Shortlist</th><th>App Status</th><th>Interview</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in applications %}
+      <tr>
+        <td>{{ item.id }}</td><td>{{ item.full_name }}</td><td>{{ item.stream_selected }}</td><td>{{ item.percentage }}</td><td>{{ item.merit_score }}</td>
+        <td>{{ item.shortlist_status }}</td><td>{{ item.application_status }}</td>
+        <td>{{ item.interview_date or '-' }} {{ item.interview_time or '' }}</td>
+        <td>
+          <form method="post" action="{{ url_for('update_application_status', student_id=item.id) }}" class="d-flex gap-2 mb-2">
+            <select class="form-select form-select-sm" name="status">
+              <option {% if item.application_status == 'Submitted' %}selected{% endif %}>Submitted</option>
+              <option {% if item.application_status == 'Approved' %}selected{% endif %}>Approved</option>
+              <option {% if item.application_status == 'Rejected' %}selected{% endif %}>Rejected</option>
+            </select>
+            <button class="btn btn-sm btn-primary">Save</button>
+          </form>
+          <form method="post" action="{{ url_for('schedule_interview') }}" class="d-grid gap-1">
+            <input type="hidden" name="student_id" value="{{ item.id }}">
+            <input type="date" name="interview_date" class="form-control form-control-sm">
+            <input type="time" name="interview_time" class="form-control form-control-sm">
+            <input type="text" name="remarks" class="form-control form-control-sm" placeholder="Remarks">
+            <button class="btn btn-sm btn-warning">Schedule</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
