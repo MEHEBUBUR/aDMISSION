@@ -147,7 +147,7 @@ Use these exact settings for this Python Flask app:
 - **Environment**: `Python 3`
 - **Build Command**: `bash ./scripts/render-build.sh`
 - Flask is installed explicitly inside this script.
-- **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
+- **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
 
 ### Important for existing Render services
 
@@ -173,7 +173,7 @@ Some Render services are accidentally created with Rust defaults and run `cargo 
 before app settings are corrected. To prevent immediate build failure (`could not find Cargo.toml`),
 this repo includes a minimal Rust shim (`Cargo.toml` + `src/main.rs`) so the build step can complete.
 
-> The real runtime remains Python Flask via: `gunicorn app:app --bind 0.0.0.0:$PORT`.
+> The real runtime remains Python Flask via: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`.
 
 
 ## Render Blueprint Deploy (Recommended)
@@ -183,7 +183,7 @@ this repo includes a minimal Rust shim (`Cargo.toml` + `src/main.rs`) so the bui
 3. Select this repository. Render reads `render.yaml` automatically.
 4. Confirm service settings:
    - Build command: `bash ./scripts/render-build.sh`
-   - Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
+   - Start command: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
 5. Deploy.
 6. Verify health check: `/health`
 

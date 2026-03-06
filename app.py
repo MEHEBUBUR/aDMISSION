@@ -4,6 +4,7 @@ import os
 import sqlite3
 from datetime import datetime
 from functools import wraps
+from threading import Lock
 
 from flask import (
     Flask,
@@ -142,6 +143,24 @@ def init_db():
             ("admin", generate_password_hash("admin123")),
         )
         db.commit()
+
+_db_init_lock = Lock()
+_db_initialized = False
+
+
+def ensure_db_initialized():
+    global _db_initialized
+    if _db_initialized:
+        return
+    with _db_init_lock:
+        if not _db_initialized:
+            init_db()
+            _db_initialized = True
+
+
+@app.before_request
+def setup_app_data():
+    ensure_db_initialized()
 
 
 def login_required(f):
