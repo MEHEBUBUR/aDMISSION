@@ -190,3 +190,17 @@ this repo includes a minimal Rust shim (`Cargo.toml` + `src/main.rs`) so the bui
 If your old service still shows `cargo build --release`, either:
 - update that service settings manually, or
 - create a **new Blueprint service** from this repository.
+
+
+### If you still see `could not find Cargo.toml in /opt/render/project/src`
+
+That means Render is still using old **service-level** Rust settings (or wrong Root Directory), not this repo config.
+
+Set these in Render service settings exactly:
+
+- **Root Directory**: `.`
+- **Environment**: `Python 3`
+- **Build Command**: `bash ./scripts/render-build.sh`
+- **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
+
+Then run: **Manual Deploy -> Clear build cache & deploy**.
