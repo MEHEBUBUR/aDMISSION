@@ -146,6 +146,7 @@ Use these exact settings for this Python Flask app:
 
 - **Environment**: `Python 3`
 - **Build Command**: `bash ./scripts/render-build.sh`
+- Flask is installed explicitly inside this script.
 - **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT`
 
 ### Important for existing Render services
