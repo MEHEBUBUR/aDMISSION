@@ -173,3 +173,19 @@ before app settings are corrected. To prevent immediate build failure (`could no
 this repo includes a minimal Rust shim (`Cargo.toml` + `src/main.rs`) so the build step can complete.
 
 > The real runtime remains Python Flask via: `gunicorn app:app --bind 0.0.0.0:$PORT`.
+
+
+## Render Blueprint Deploy (Recommended)
+
+1. Push this repository to GitHub.
+2. In Render, click **New +** -> **Blueprint**.
+3. Select this repository. Render reads `render.yaml` automatically.
+4. Confirm service settings:
+   - Build command: `bash ./scripts/render-build.sh`
+   - Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
+5. Deploy.
+6. Verify health check: `/health`
+
+If your old service still shows `cargo build --release`, either:
+- update that service settings manually, or
+- create a **new Blueprint service** from this repository.

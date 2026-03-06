@@ -1,13 +1,30 @@
 :root {
   --kvs-maroon: #7b1e3a;
+  --kvs-gold: #f2c14e;
+  --kvs-dark: #222;
 }
 
 body {
-  background-color: #f8f9fb;
+  background: #f5f7fb;
+  color: #1f2937;
+  font-family: 'Roboto', sans-serif;
+}
+
+.top-strip {
+  background: #002147;
 }
 
 .kvs-maroon {
   background-color: var(--kvs-maroon) !important;
+}
+
+.brand-header h1 {
+  color: #002147;
+}
+
+.site-footer {
+  border-top: 3px solid var(--kvs-maroon);
+  background: #fff;
 }
 
 .kvs-btn {
@@ -22,6 +39,28 @@ body {
 }
 
 .logo {
-  width: 90px;
+  width: 68px;
   height: auto;
+}
+
+.hero-section {
+  background-image: linear-gradient(120deg, rgba(0, 33, 71, 0.86), rgba(123, 30, 58, 0.74)),
+    url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.quick-actions .btn {
+  width: 100%;
 }

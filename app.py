@@ -224,6 +224,11 @@ def fetch_merit_sorted(db):
     return db.execute(query).fetchall()
 
 
+@app.route("/health")
+def health():
+    return {"status": "ok"}, 200
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
